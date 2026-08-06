@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2 class="center">WELCOME TO MINI-WALLET </h2>
+<a href="create-form">Create Wallet</a> <br> <br>
+<a href="deposite">Add deposite</a> <br>
+<a href="balance">View Balance</a> <br>
+<!-- Shows "New wallet created" or "UserId already exists" in red/green -->
+<p th:text="${message}"></p>
+
+<p th:text="${depositeResponse}"></p>
+
+<p th:if="${balance}" th:text="'Your balance is ₹' + ${balance}"></p>
+</body>
+</html>
