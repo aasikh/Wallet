@@ -32,7 +32,7 @@ public WalletService(WalletRepo walletRepo){
     double balance =  userWallet.getBalance() + wallet.getBalance();
     userWallet.setBalance(balance);
     walletRepo.save(userWallet);
-    return "Add deposite";
+    return "Your deposite added successfully";
     }
 
     public double check(String userId){
