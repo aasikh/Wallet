@@ -6,44 +6,44 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Wallet {
+public class EmailQueue {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long userId;
-
-    private double balance;
+    private String email;
     private String name;
-    public Long getId() {
-        return id;
-    }
-
+    private String status;
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
+    public Long getId() {
+        return id;
     }
 
-    public double getBalance() {
-        return balance;
+    public String getName() {
+        return name;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public Long getUserId() {
-        return userId;
+    public String getEmail() {
+        return email;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }

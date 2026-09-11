@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <h2>Welcome to login form </h2>
+ <form action="/loginStore" method="post">
+     <label> E-mail</label> <br>
+     <input type="text" name="email" > <br>
+     <label> Password</label> <br>
+     <input type="password" name="password"> <br>
+     <button>Submit</button>
+ </form>
+<p th:if="${message}" th:text="${message}"></p>
+</body>
+</html>

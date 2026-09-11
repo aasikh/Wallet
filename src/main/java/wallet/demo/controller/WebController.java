@@ -1,8 +1,10 @@
 package wallet.demo.controller;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import wallet.demo.entity.Wallet;
 import wallet.demo.service.WalletService;
 
@@ -20,18 +22,11 @@ public class WebController {
         return "index";
     }
 
-    @GetMapping("/create-form")
-    public String showCreateForm(){
-        return "wallet-form";
-    }
+//        @GetMapping("/create-form")
+//    public String showCreateForm(){
+//        return "wallet-form";
+//    }
 
-
-    @PostMapping("/create")
-    public String create(@ModelAttribute Wallet wallet, Model model){
-        String userResponse =  walletService.create(wallet);
-        model.addAttribute("message", userResponse);
-        return "index";
-    }
 
     @GetMapping("/deposite")
     public String showDepositeForm(){
@@ -39,20 +34,30 @@ public class WebController {
     }
 
     @PostMapping("/store-deposite")
-    public String addDeposite(@ModelAttribute Wallet wallet, Model model){
+    public String addDeposite(@ModelAttribute Wallet wallet, HttpSession session, RedirectAttributes redirectAttributes){
+        Long userId = (Long) session.getAttribute("userId");
+        wallet.setUserId(userId);
         String depositeResponse =  walletService.store(wallet);
-        model.addAttribute("depositeResponse", depositeResponse);
-        return "index";
+         redirectAttributes.addFlashAttribute("depositeResponse", depositeResponse);
+        return "redirect:/dashboard";
     }
 
-   @GetMapping("/balance")
-    public String showBalancePage(){
-        return "balance";
-   }
    @GetMapping("/checkBalance")
-    public String checkBalace(@RequestParam("userId") String userId, Model model){
+    public String checkBalace(HttpSession session, RedirectAttributes redirectAttributes){
+        Long userId = (Long) session.getAttribute("userId");
+        if(userId==null){
+            return "redirect:/login";
+        }
         double balance = walletService.check(userId);
-        model.addAttribute("balance" , balance);
-        return "index";
+         redirectAttributes.addFlashAttribute("balance", balance);
+         return "redirect:/dashboard";
    }
+
+    @PostMapping("/create")
+    public String create(HttpSession session, RedirectAttributes redirectAttributes){
+        Long userId = (Long) session.getAttribute("userId");
+        String userResponse =  walletService.create(userId);
+         redirectAttributes.addFlashAttribute("walletCreated", userResponse);
+        return "redirect:/dashboard";
+    }
 }

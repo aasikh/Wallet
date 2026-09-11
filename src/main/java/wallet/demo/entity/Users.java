@@ -6,37 +6,37 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Wallet {
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+   private String name;
+   private String email;
+   private String password;
 
-    private Long userId;
-
-    private double balance;
-    private String name;
-    public Long getId() {
-        return id;
-    }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
+    public Long getId() {
+        return id;
     }
 
-    public double getBalance() {
-        return balance;
+    public String getPassword() {
+        return password;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public String getEmail() {
+        return email;
     }
 
-    public Long getUserId() {
-        return userId;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setName(String name) {
@@ -46,4 +46,5 @@ public class Wallet {
     public String getName() {
         return name;
     }
+
 }
