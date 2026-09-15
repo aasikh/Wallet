@@ -38,7 +38,10 @@ public class UserService {
 
     public Users login(Users users){
         Users userExists = userRepo.findByEmail(users.getEmail());
-        if(!userExists.getPassword().equals(users.getPassword()) || userExists==null){
+        if(userExists==null){
+            return null;
+        }
+        if(!userExists.getPassword().equals(users.getPassword())){
             return null;
         }
         return userExists;

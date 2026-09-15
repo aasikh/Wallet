@@ -37,12 +37,10 @@ public WalletService(WalletRepo walletRepo){
         if (userWallet == null) {
             return "Wallet does not exist";
         }
-
         // 2. Check deposit amount
         if (wallet.getBalance() <= 0) {
             return "Deposit amount must be greater than 0";
         }
-
         // 3. Add deposit to existing balance
         double newBalance =
                 userWallet.getBalance() + wallet.getBalance();

@@ -26,8 +26,11 @@ private final TransferRepo transferRepo;
             return "Account is not exists";
         }
       double sendBalance = walletSen.getBalance();
-        if(sendBalance< transfer.getAmount() || transfer.getAmount()<0){
-            return "Insufficent Balance or Balance is not valid";
+        if(sendBalance< transfer.getAmount()){
+            return "Insufficient balance";
+        }
+        if( transfer.getAmount()<=0){
+            return "invalid transfer amount";
         }
         double currRecBalance = walletReci.getBalance() + transfer.getAmount();
         walletReci.setBalance(currRecBalance);

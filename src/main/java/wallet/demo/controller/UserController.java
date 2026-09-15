@@ -84,7 +84,7 @@ public class UserController {
             return "redirect:/dashboard";
         }else {
 
-            model.addAttribute("message", "email is not exists or password invalid");
+            model.addAttribute("message", "email is dose not exists or password invalid");
             return "login";
         }
     }
